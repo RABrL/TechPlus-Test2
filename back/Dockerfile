@@ -1,8 +1,5 @@
 # Usa una imagen base con JRE 17 en Alpine
-FROM eclipse-temurin:8-jdk-alpine
-
-# Crea un usuario y grupo para la aplicacion
-RUN addgroup -S devopsc && adduser -S javams -G devopsc
+FROM eclipse-temurin:17-jdk-alpine
 
 # use a volume is more efficient and speed that filesystem
 VOLUME /tmp
@@ -16,14 +13,9 @@ ARG DB_PASSWORD
 # Establece la variable de entorno DB_PASSWORD con el valor del argumento
 ENV DB_PASSWORD=$DB_PASSWORD
 
-# Copia el archivo jar
-COPY ${JAR_FILE} /tmp/app.jar
+RUN mkdir /opt/app
 
-# Cambia el propietario del archivo jar
-RUN chown -R javams:devopsc /tmp
+COPY ${JAR_FILE} /opt/app/japp.jar
 
-# Cambia el usuario
-USER javams:devopsc
+CMD ["java", "-jar", "/opt/app/japp.jar"]
 
-# Ejecutamos el jar al iniciar el contenedor
-ENTRYPOINT [ "java","-jar","/tmp/app.jar"]
