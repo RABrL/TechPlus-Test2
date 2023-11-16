@@ -1,3 +1,10 @@
+java:
+  version: 17
+  
+user:
+  name: "Andres Brito"
+  email: "robin_brito@hotmail.com"
+
 server:
   port: 8081
 
