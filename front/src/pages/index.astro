@@ -1,4 +1,5 @@
 ---
+import Button from "../components/Button";
 import Layout from "../layouts/Layout.astro";
 import { PuzzlePieceIcon, CodeBracketIcon } from "@heroicons/react/24/outline";
 ---
@@ -31,22 +32,22 @@ import { PuzzlePieceIcon, CodeBracketIcon } from "@heroicons/react/24/outline";
     <section
       class="relative sm:gap-x-3 gap-y-3 text-center mt-10 max-w-3xl mx-auto flex flex-col sm:justify-center sm:flex-row md:mt-12"
     >
-      <a
+      <Button
         href="/builder"
-        class="flex-row gap-x-3 inline-flex items-center text-xl font-medium rounded-xl shadow-sm border-transparent ring-1 ring-transparent py-3 px-11 justify-center text-white bg-blue-500 whitespace-nowrap cursor-pointer hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-[#1da1f2]/50 text-center hover:shadow-lg transition-all duration-200 ease-in-out hover:scale-110 scale-90 hover:opacity-100"
+        className="hover:shadow-lg transition-all duration-200 ease-in-out hover:scale-110 scale-90 hover:opacity-100"
       >
         <PuzzlePieceIcon className="w-6 h-6" />
          Go Build
-      </a>
-      <a
+      </Button>
+      <Button
         href="https://github.com/RABrL/TechPlus-Test2"
         target="_blank"
         rel="noreferrer"
-        class="flex-row gap-x-3 inline-flex items-center text-xl font-medium rounded-xl shadow-sm border-transparent ring-1 ring-transparent py-3 px-11 justify-center text-white bg-blue-500 whitespace-nowrap cursor-pointer hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-[#1da1f2]/50 text-center hover:shadow-lg transition-all duration-200 ease-in-out hover:scale-110 scale-90 hover:opacity-100"
+        className="hover:shadow-lg transition-all duration-200 ease-in-out hover:scale-110 scale-90 hover:opacity-100"
       >
         <CodeBracketIcon className="w-6 h-6" />
          Source Code
-      </a>
+      </Button>
     </section>
   </main>
 </Layout>

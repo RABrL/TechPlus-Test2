@@ -1,22 +1,21 @@
 ---
-import Logo from "./Logo.astro";
-import GithubButton from "./GithubButton.astro";
+import Logo from "./Logo";
+import GithubButton from "./GithubButton";
 import BurgerMenu from "./BurgerMenu";
+import NavItem from "./NavItem.astro";
 ---
 
 <header class="flex justify-between items-center h-24">
   <section class="flex">
-    <a href="/">
-      <Logo />
-    </a>
+    <Logo />
   </section>
   <section class="lg:flex items-center space-x-8 hidden">
     <nav
       class="flex text-slate-500 relative justify-center text-base font-medium space-x-8"
     >
-      <a href="/builder" class="hover:text-slate-700">Builder</a>
-      <a href="/community" class="hover:text-slate-700">Community queries</a>
-      <a href="/about" class="hover:text-slate-700">About</a>
+      <NavItem href="/builder">Builder</NavItem>
+      <NavItem href="/community">Community queries</NavItem>
+      <NavItem href="/about">About</NavItem>
     </nav>
     <div class="lg:border-r py-4"></div>
     <div class="justify-end">
