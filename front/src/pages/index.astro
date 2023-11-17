@@ -1,11 +1,52 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import Layout from "../layouts/Layout.astro";
+import { PuzzlePieceIcon, CodeBracketIcon } from "@heroicons/react/24/outline";
 ---
 
-<Layout title="Prueba tecnica">
-	<main>
-    <h1 class="font-6xl text-cyan-200">Tech+ FellowShip</h1>
-	</main>
+<Layout title="Query Builder">
+  <main class="mx-auto max-w-7xl px-0 sm:px-8 mt-40 sm:mt-40">
+    <section class="relative text-center lg:px-28 -mt-28 sm:-mt-16">
+      <div
+        class="relative mt-16 text-4xl tracking-tight font-extrabold text-slate-800 sm:text-5xl md:text-6xl z-40"
+      >
+        <h1
+          class="bg-gradient-to-r from-fuchsia-500 to-cyan-500 bg-clip-text text-transparent"
+        >
+          Tech+ Query Builder
+        </h1>
+      </div>
+      <h2
+        class="mt-8 max-w-lg mx-auto font-normal text-sm md:text-lg sm:text-base leading-8 text-slate-500 lg:mt-10 lg:max-w-2xl"
+      >
+        A query Builder for the <strong>Natality Data from CDC Births</strong>.
+        If you want to take a look at the dataset click <a
+          href="https://console.cloud.google.com/marketplace/product/center-disease-control/wonder-births"
+          target="_blank"
+          rel="noreferrer"
+          title="Go to the dataset"
+          class="underline text-blue-600">here</a
+        >.
+      </h2>
+    </section>
+    <section
+      class="relative sm:gap-x-3 gap-y-3 text-center mt-10 max-w-3xl mx-auto flex flex-col sm:justify-center sm:flex-row md:mt-12"
+    >
+      <a
+        href="/builder"
+        class="flex-row gap-x-3 inline-flex items-center text-xl font-medium rounded-xl shadow-sm border-transparent ring-1 ring-transparent py-3 px-11 justify-center text-white bg-blue-500 whitespace-nowrap cursor-pointer hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-[#1da1f2]/50 text-center hover:shadow-lg transition-all duration-200 ease-in-out hover:scale-110 scale-90 hover:opacity-100"
+      >
+        <PuzzlePieceIcon className="w-6 h-6" />
+         Go Build
+      </a>
+      <a
+        href="https://github.com/RABrL/TechPlus-Test2"
+        target="_blank"
+        rel="noreferrer"
+        class="flex-row gap-x-3 inline-flex items-center text-xl font-medium rounded-xl shadow-sm border-transparent ring-1 ring-transparent py-3 px-11 justify-center text-white bg-blue-500 whitespace-nowrap cursor-pointer hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-[#1da1f2]/50 text-center hover:shadow-lg transition-all duration-200 ease-in-out hover:scale-110 scale-90 hover:opacity-100"
+      >
+        <CodeBracketIcon className="w-6 h-6" />
+         Source Code
+      </a>
+    </section>
+  </main>
 </Layout>
-
