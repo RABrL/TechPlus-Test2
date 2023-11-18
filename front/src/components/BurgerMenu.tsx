@@ -3,7 +3,7 @@ import { Popover } from '@headlessui/react'
 
 import GithubButton from './GithubButton'
 import Logo from './Logo'
-import BurgerMenuItem from './BuerMenuItem'
+import BurgerMenuItem from './BurgerMenuItem'
 
 export default function BurgerMenu() {
   return (

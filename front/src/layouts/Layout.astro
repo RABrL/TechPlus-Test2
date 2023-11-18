@@ -21,13 +21,13 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body class="scroll-auto antialiased">
-    <div class="flex flex-col max-w-7xl min-h-screen mx-auto px-6 sm:px-8">
+    <div class="flex flex-col max-w-7xl min-h-screen mx-auto px-5 sm:px-8">
       <Header />
       <main>
         <slot />
       </main>
       <footer
-        class="p-4 text-blue-600 flex-1 flex items-end justify-center font-mono "
+        class="text-blue-600 flex-1 flex items-end justify-center font-mono text-xs md:text-sm"
       >
         Hecho con&ensp;<span class="text-red-500">❤</span>&ensp;por&ensp;<a
           href="https://github.com/RABrL"
