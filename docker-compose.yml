@@ -23,6 +23,9 @@ services:
     environment:
       - JAR_FILE=${JAR_FILE}
       - DB_PASSWORD=${DB_PASSWORD}
+      - DB_USER=${DB_USER}
+      - DB_NAME=${DB_NAME}
+      - DB_HOST=postgres-db
 
   front:
     build:
@@ -30,11 +33,15 @@ services:
     ports:
       - 9000:80
     depends_on:
-      - java-back
+      - back
     environment:
       - BACKEND_API_URL=${BACKEND_API_URL}
 
 volumes:
   tech-db:
+
+networks:
+  default:
+    name: tech-app
 
 
