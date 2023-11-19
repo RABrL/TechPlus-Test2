@@ -6,7 +6,7 @@ WORKDIR /app
 # use a volume is more efficient and speed that filesystem
 VOLUME /tmp
 
-COPY ${JAR_FILE} ./japp.jar
+COPY ${JAR_FILE} .japp.jar
 
 CMD ["java", "-jar", "./japp.jar"]
 
