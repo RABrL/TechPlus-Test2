@@ -3,10 +3,16 @@ FROM eclipse-temurin:17-jdk-alpine
 
 WORKDIR /app
 
-# use a volume is more efficient and speed that filesystem
-VOLUME /tmp
+COPY gradle/ gradle/
 
-COPY ${JAR_FILE} .japp.jar
+COPY build.gradle settings.gradle ./
 
-CMD ["java", "-jar", "./japp.jar"]
+COPY gradlew ./
 
+RUN ./gradlew dependencies
+
+COPY src ./src
+
+EXPOSE 8081
+
+CMD ["./gradlew", "bootRun"]

@@ -8,7 +8,6 @@ RUN rm -rf /usr/share/nginx/html/*
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY dist /usr/share/nginx/html
-COPY mime.types /etc/nginx/mime.types
 
 #The ports 80 for web app
 EXPOSE 80
