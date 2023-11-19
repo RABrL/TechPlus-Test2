@@ -1,6 +1,6 @@
 FROM nginx:stable-alpine
 
- # use a volume is mor efficient and speed that filesystem
+# use a volume is mor efficient and speed that filesystem
 VOLUME /tmp
 
 #Install web app on nginx server

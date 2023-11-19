@@ -1,6 +1,6 @@
 java:
   version: 17
-  
+
 user:
   name: "Andres Brito"
   email: "robin_brito@hotmail.com"
@@ -12,7 +12,15 @@ spring:
   datasource:
     url: jdbc:postgresql://127.0.0.1:5432/tech_fellow_test
     username: brito
-    password: Rbr1t01014#
+    password: ${DB_PASSWORD}
+
+  cloud:
+    gcp:
+      bigquery:
+        credentials:
+          location: file:./bigquery-key.json
+        project-id: techplus stage2
+        dataset-name: bigquery-public-data
 
   jpa:
     hibernate:
