@@ -1,17 +1,11 @@
-FROM nginx:stable-alpine
+FROM node:lts-alpine as build
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
 
-# use a volume is mor efficient and speed that filesystem
-VOLUME /tmp
-
-#Install web app on nginx server
-RUN rm -rf /usr/share/nginx/html/*
-
+FROM nginx:alpine as runtime
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY dist /usr/share/nginx/html
-COPY mime.types /etc/nginx/mime.types
-
-#The ports 80 for web app
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
-
+COPY --from=build /app/dist /usr/share/nginx/html
 

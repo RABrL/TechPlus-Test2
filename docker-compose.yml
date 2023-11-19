@@ -31,7 +31,7 @@ services:
     build:
       context: ./front
     ports:
-      - 9000:80
+      - 9000:8080
     depends_on:
       - back
     environment:
@@ -40,8 +40,7 @@ services:
 volumes:
   tech-db:
 
+
 networks:
   default:
     name: tech-app
-
-
