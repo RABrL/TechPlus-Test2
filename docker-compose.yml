@@ -1,18 +1,7 @@
 version: '3.8'
 
 services:
-  java_back:
-    build:
-      context: ./back
-    ports:
-      - 8081:8081
-    depends_on:
-      - postgre_db
-    environment:
-      - JAR_FILE=${JAR_FILE}
-      - DB_PASSWORD=${DB_PASSWORD}
-  
-  postgre_db:
+  postgres-db:
     image: postgres:latest
     restart: always
     environment:
@@ -20,20 +9,32 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_DB=${POSTGRES_DB}
     ports:
-      - 5432:5432
+      - 5433:5432
     volumes:
-      - db:/var/lib/postgresql/data
+      - tech-db:/var/lib/postgresql/data
 
-  astro_front:
+  back:
+    build:
+      context: ./back
+    ports:
+      - 8081:8081
+    depends_on:
+      - postgres-db
+    environment:
+      - JAR_FILE=${JAR_FILE}
+      - DB_PASSWORD=${DB_PASSWORD}
+
+  front:
     build:
       context: ./front
     ports:
       - 9000:80
     depends_on:
-      - java_back
+      - java-back
     environment:
       - BACKEND_API_URL=${BACKEND_API_URL}
 
 volumes:
-  db:
+  tech-db:
+
 
