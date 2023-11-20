@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tech_fellow_test
+    username: brito
+    password: Rbr1t01014#
+
+server:
+  port: 8082

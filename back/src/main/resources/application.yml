@@ -1,18 +1,17 @@
 java:
   version: 17
 
+appDescription: "Tech+ FellowShip Test"
+
+appVersion: "1.0.0"
+
 user:
   name: "Andres Brito"
   email: "robin_brito@hotmail.com"
 
-server:
-  port: 8081
-
 spring:
-  datasource:
-    url: jdbc:postgresql://${DB_HOST}:5432/tech_fellow_test
-    username: brito
-    password: ${DB_PASSWORD}
+  profiles:
+    active: dev
 
   cloud:
     gcp:
@@ -30,5 +29,3 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
 
-appDescription: "Tech+ FellowShip Test"
-appVersion: "1.0.0"
