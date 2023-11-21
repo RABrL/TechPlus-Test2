@@ -1,5 +1,8 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import Layout from "@/layouts/Layout.astro";
+import {queryStackOverflow} from "@/services/bigquery.ts"
+
+queryStackOverflow()
 ---
 
 <Layout title="Query Builder">
