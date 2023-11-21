@@ -9,10 +9,9 @@ import java.util.List;
 @Getter
 @Setter
 public class QueryResponseDto {
+    private String id;
     private String content;
     private UserResponseDto user;
-
     private List<CommentResponseDto> comments;
-
     private Date createdAt;
 }
