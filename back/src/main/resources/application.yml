@@ -13,14 +13,6 @@ spring:
   profiles:
     active: dev
 
-  cloud:
-    gcp:
-      bigquery:
-        credentials:
-          location: file:./bigquery-key.json
-        project-id: techplus stage2
-        dataset-name: bigquery-public-data
-
   jpa:
     hibernate:
       ddl-auto: update

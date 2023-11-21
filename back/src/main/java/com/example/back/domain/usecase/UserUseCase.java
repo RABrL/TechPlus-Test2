@@ -17,13 +17,8 @@ public class UserUseCase implements IUserServicePort {
 
     @Override
     public void saveUser(User user) {
-        try {
-            // Check if user already exist
-            userPersistencePort.getUserByName(user.getName());
-        } catch (Exception e) {
-            userPersistencePort.saveUser(user);
-        }
-        throw new UserAlreadyExistException();
+        if(!userAlreadyExist(user)) userPersistencePort.saveUser(user);
+        else throw new UserAlreadyExistException();
     }
 
     @Override
@@ -41,5 +36,14 @@ public class UserUseCase implements IUserServicePort {
     @Override
     public User getUserById(Long id) {
         return userPersistencePort.getUserById(id);
+    }
+
+    private boolean userAlreadyExist(User user) {
+        try {
+            userPersistencePort.getUserByName(user.getName());
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
