@@ -1,11 +1,10 @@
 ---
+import QueryForm from "@/components/QueryForm";
 import Layout from "@/layouts/Layout.astro";
-import {queryStackOverflow} from "@/services/bigquery.ts"
-
-queryStackOverflow()
+import { queryStackOverflow } from "@/services/queryBuilder";
 ---
 
 <Layout title="Query Builder">
-  <h1>Query Builder</h1>
+  <QueryForm client:load />
   <p>Coming soon...</p>
 </Layout>
