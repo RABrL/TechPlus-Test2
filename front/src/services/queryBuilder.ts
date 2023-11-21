@@ -12,23 +12,23 @@ export enum TABLE_NAME {
   default = 'county_natality'
 }
 
-interface whereProps {
-  anormal_Conditions_Checked_YN?: boolean
+export interface whereProps {
+  Abnormal_Conditions_Checked_YN?: 0 | 1
   Ave_Age_of_Mother?: number
   Ave_Birth_Weight_gms?: number
-  County_of_Residence: string
+  County_of_Residence?: string
   Mothers_Single_Race?: string
   Year?: string
 }
 
 interface likeProps {
-  County_of_Residence: string
+  County_of_Residence?: string
   Mothers_Single_Race?: string
 }
 
-type selectProps = keyof whereProps | '*' | 'Births'
+export type selectProps = keyof whereProps | '*' | 'Births'
 
-interface QueryBuilderProps {
+export interface QueryBuilderProps {
   limit?: number
   where?: whereProps
   select?: selectProps[]
@@ -67,12 +67,8 @@ export async function fetchQuery({
 
   // Run the query
   const [rows] = await bigquery.query(options)
-  console.log(rows)
-  console.log('Query Results:')
-  rows.forEach((row) => {
-    const county = row.County_of_Residence
-    console.log(`county: ${county}`, `rows: ${JSON.stringify(rows.length)}`)
-  })
+
+  return rows
 }
 
 const parseWhere = (where?: whereProps) => {
