@@ -14,9 +14,8 @@ import java.util.List;
 public interface ICommentEntityMapper {
     @Mapping(source = "queryId", target = "query.id")
     CommentEntity toEntity(Comment comment);
-
     @Mapping(source = "query.id", target = "queryId")
     Comment toComment(CommentEntity commentEntity);
-
     List<Comment> toCommentList(List<CommentEntity> commentEntities);
+
 }

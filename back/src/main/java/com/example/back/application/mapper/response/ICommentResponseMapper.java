@@ -26,19 +26,5 @@ public interface ICommentResponseMapper {
         return commentResponse;
     }
 
-    default List<CommentResponseDto> toResponseList(List<Comment> commentList) {
-        if (commentList.isEmpty()) {
-            return new ArrayList<>();
-        }
-        return commentList.stream()
-                .map(comment -> {
-                    CommentResponseDto commentResponse = new CommentResponseDto();
-                    commentResponse.setContent(comment.getContent());
-                    commentResponse.setCreatedAt(comment.getCreatedAt());
-                    commentResponse.setUser(userResponseMapper.toResponse(comment.getUser()));
-                    commentResponse.setQueryId(comment.getQueryId());
-                    return commentResponse;
-                }
-        ).toList();
-    }
+    List<CommentResponseDto> toResponseList(List<Comment> commentList);
 }

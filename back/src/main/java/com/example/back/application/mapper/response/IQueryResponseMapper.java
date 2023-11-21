@@ -20,6 +20,7 @@ public interface IQueryResponseMapper {
 
     default QueryResponseDto toResponse(Query query) {
         QueryResponseDto queryResponse = new QueryResponseDto();
+        queryResponse.setId(query.getId());
         queryResponse.setContent(query.getContent());
         queryResponse.setUser(userMapper.toResponse(query.getUser()));
         queryResponse.setComments(commentMapper.toResponseList(query.getComments()));
@@ -27,18 +28,5 @@ public interface IQueryResponseMapper {
         return queryResponse;
     }
 
-    default List<QueryResponseDto> toResponseList(List<Query> queryList) {
-        if (queryList.isEmpty()) {
-            return new ArrayList<>();
-        }
-        return queryList.stream()
-                .map(query -> {
-                    QueryResponseDto queryResponse = new QueryResponseDto();
-                    queryResponse.setContent(query.getContent());
-                    queryResponse.setUser(userMapper.toResponse(query.getUser()));
-                    queryResponse.setComments(commentMapper.toResponseList(query.getComments()));
-                    queryResponse.setCreatedAt(query.getCreatedAt());
-                    return queryResponse;
-                }).toList();
-    }
+    List<QueryResponseDto> toResponseList(List<Query> queryList);
 }
