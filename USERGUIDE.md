@@ -14,3 +14,6 @@ After cloning the repo and set your .env file, run the following commands to sta
 
     docker compose up --build -d
 and that's all your proyect is already running locally in :9000 port.
+
+## Video URL of preview app
+[LINK](https://youtube.com)
