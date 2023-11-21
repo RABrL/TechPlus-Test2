@@ -1,10 +1,10 @@
 ---
 import QueryForm from "@/components/QueryForm";
 import Layout from "@/layouts/Layout.astro";
-import { queryStackOverflow } from "@/services/queryBuilder";
+import {  fetchQuery } from "@/services/queryBuilder";
+await fetchQuery({select: ['Births','Ave_Birth_Weight_gms']});
 ---
 
 <Layout title="Query Builder">
   <QueryForm client:load />
-  <p>Coming soon...</p>
 </Layout>
