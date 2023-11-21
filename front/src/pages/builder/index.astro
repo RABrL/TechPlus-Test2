@@ -1,9 +1,8 @@
 ---
 import QueryForm from "@/components/QueryForm";
 import Layout from "@/layouts/Layout.astro";
-export const prerender = false;
 ---
 
 <Layout title="Query Builder">
-  <QueryForm client:visible />
+  <QueryForm client:load />
 </Layout>

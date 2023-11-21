@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@astrojs/check": "0.3.1",
+    "@astrojs/node": "^6.0.4",
     "@astrojs/react": "3.0.5",
     "@astrojs/tailwind": "5.0.2",
     "@google-cloud/bigquery": "7.3.0",

@@ -10,7 +10,6 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import Button from '@/components/Button'
-import SelectReact from 'react-select'
 import {
   Select,
   SelectContent,
@@ -40,7 +39,8 @@ const formSchema = z
   })
   .partial()
   .required({ Ave_Age_of_Mother: true, Ave_Birth_Weight_gms: true })
-const selectOptions = [
+
+export const selectOptions = [
   { value: 'Abnormal_Conditions_Checked_YN', label: 'Abnormal conditions' },
   { value: 'Ave_Age_of_Mother', label: 'Average age of mother' },
   { value: 'Ave_Birth_Weight_gms', label: 'Average weight of birth' },
@@ -96,33 +96,12 @@ export default function QueryForm() {
       query.select = select as selectProps[]
 
     const res = await fetchQuery(query)
-
     console.log(res)
   }
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
-          control={form.control}
-          name="select"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Choose the fields to search</FormLabel>
-              <FormControl>
-                <SelectReact
-                  defaultValue={[]}
-                  isMulti
-                  name="select"
-                  options={selectOptions}
-                  className="basic-multi-select"
-                  classNamePrefix="select"
-                  placeholder="Select a field..."
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        
         <FormField
           control={form.control}
           name="Year"
@@ -242,7 +221,7 @@ export default function QueryForm() {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit">Run Query</Button>
       </form>
     </Form>
   )
