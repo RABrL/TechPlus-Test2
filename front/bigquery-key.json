@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "techplus-stage2",
+  "private_key_id": "93f506ca89610fd3dc3081f0dc8f4bceafa5b5b3",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCepV7vbSjiX+hg\nbBCmaWO8+KgLxdtREKpvCDQs4st6OPXGtlwudkiRAO6iADKF89Sb0HiQsdOkAjKR\nCAdnl0zCPR1kjSgj4J3OZraLx79JRaEpYMQWnJfzPL2JiskZ7btH9onmKf4mtxII\naTFeVgbg7DC02tsZ/i2pMIsGMFELxg7oFKw2XO9qMle2cCpZb0dvnSIzYZvt2r90\nRhGDpjYgz4+Xab0avhbBVS3qsusQBmqtJmshGO5Ev2HxlKgMse0B3L27VTNsoWQv\n/Mi1DOJy3roOHUcdbhnE95qV7wJQrBWJQZnWDjTjE2F0VPmcvPqn0dsR9k1C7bZP\nEmCJYxZ3AgMBAAECggEAJYH2oIe/50mCkK1sAFQhaw+k92eXcyKMEQUxBL24GtT1\nsr3xrGB1xqagRLfkOgxMY2xV3OvWHEwStXxe98xrLu8xEFFZQKY92QsqtICMxp+K\nO1Sv96KdQDpHm4mvAwzUPu7YaozaFEArKMbqD6IqLSpaV5/4tjwEgqBB9jwdJTmW\nZ1y4z5umubVJ4kg0MAk3a0ecsJtoCezKQ4gUCGWDyjq0UpP3HySQkjYc6Ir47E1r\n+EQTp8+4DEoHffoqFvhnv4DBn9kcck6TutcyAHSmU0oC5dy7PtNOak5ew91PbzQw\ntgXBijnLDLodgXznG/jC4akRQvsZDo7EezyGGxLXWQKBgQDUUeqtzpmO/DTRVTUC\nTS5rHd6on0/BZky2unDgffGZkGdX3wUHdLz0T4yqrLiomhP8c+bEaUOOouOFZmlH\nrz+AFtSr4cRzeR9nbcmbyYcnH5xL3KzaQ5dNrB5oxDRE6QCmWtAnmmkuTv55s5uR\nA6K3221oMXVXNGfzx4DlMFrcSQKBgQC/SKYnV2P5IvBfNHrVK2pZHCeJ7FyWpLgN\n/blooKGmRmWdVYmdzBOHO3jw1pGCwGOvL1wFUyrFEaMYdeUQ5Ft9RKNy3YKimeq4\nOgscu/YZ9taSYN0H3hnSr/7BlNx27h+ihzud1bcHtbnZRyHVkArbShewWKMxsLaq\nEZWsOfrcvwKBgQCuVnkhsFQMwXDJNnLpaeCkmgk7Yl0Fy+9P13VaEHAyjQ0ebQTf\nI28IGM3DU0HpR2MD11N0kY6kb4HtBrOJ5g95KMYGQMKjoqAzuEVkQy1T5bPb4t6X\n9gomAB+UHQ9iSgR7lHP5IOQe30Q7QEyL3XVeDLIgbQQRz/lPhdCD4Jmq6QKBgB/P\noio6w1qEb/s1TBQ1cys8nmq2jzNSU3WoM3Rt+lQfsvh2aDuA2+KKhnNvC6X1/t38\nf043ZY5+f2Qq/xxPDdQIXTJWGkqWVE2tAXoW3De3MDoJt9h+HEdIk5J4Ai4ZLdOm\nr8hw6U5z72NuC/drTBLqAISISSOTYt1nrT+GKO0bAoGAJzpviqE8g4ZsRANA3seO\nr49RwYXvqw6EVt2oKocLbG9QGOGYPaBDrBuLoX8FNd6Kh+G9BZRKZIprTf7GSt8U\nQfOOUiTjEocHXfxgd0GS7Op94NX3w/8pnADL6VXS+jETxoSoas/sB53z9cMe/JKf\nsDz9eF+Re/5aY9SjXOqMrzQ=\n-----END PRIVATE KEY-----\n",
+  "client_email": "servicio1@techplus-stage2.iam.gserviceaccount.com",
+  "client_id": "102797347966243656830",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/servicio1%40techplus-stage2.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
