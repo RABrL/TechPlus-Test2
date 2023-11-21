@@ -13,7 +13,7 @@ First of all clone the repository
 After cloning the repo and set your .env file, run the following commands to start
 
     docker compose up --build -d
-and that's all your proyect is already running locally in :9000 port.
+and that's all your proyect is already running locally on http://localhost:9000 port.
 
 ## Video URL of preview app
 [LINK](https://youtube.com)
