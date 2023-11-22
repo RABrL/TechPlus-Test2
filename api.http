@@ -1,0 +1,51 @@
+
+## Get all users
+GET http://localhost:8081/api/v1/user/ HTTP/1.1
+Content-Type: application/json
+
+###
+
+## Create user
+POST http://localhost:8081/api/v1/user/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Scoot"
+}
+
+###
+
+## Get all queries
+GET http://localhost:8081/api/v1/query/ HTTP/1.1
+Content-Type: application/json
+
+###
+
+## Create a query
+POST http://localhost:8081/api/v1/query/ HTTP/1.1
+Content-Type: application/json
+
+{
+	"title": "Traer todos los usuarios",
+	"userId": 1,
+	"content": "Select pepito from users",
+	"description": ""
+}
+
+###
+
+## Get all comments
+GET http://localhost:8081/api/v1/comment/ HTTP/1.1
+Content-Type: application/json
+
+###
+
+## Create a comment
+POST http://localhost:8081/api/v1/comment/ HTTP/1.1
+Content-Type: application/json
+
+{
+	"content": "Este es un comentario aaaaaa",
+	"userId": 1,
+	"queryId": "b1d40ba8-5864-419c-8b9f-b8263fe53b67"
+}

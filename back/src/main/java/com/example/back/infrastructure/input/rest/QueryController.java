@@ -5,6 +5,8 @@ import com.example.back.application.dto.response.QueryResponseDto;
 import com.example.back.application.handler.IQueryHandler;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,7 +27,7 @@ public class QueryController {
     @PostMapping("/")
     public ResponseEntity<Void> saveQuery(@Valid @RequestBody QueryRequestDto queryRequestDto) {
         queryHandler.saveQuery(queryRequestDto);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping("/")
