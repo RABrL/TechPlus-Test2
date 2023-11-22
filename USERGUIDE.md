@@ -14,9 +14,9 @@ After cloning the repo and set your .env file, run the following commands to sta
 
     docker compose up --build -d
 and that's all your proyect is already running locally on http://localhost:9000 port.
-## How use the App
+## How to use the App
 
-This project is not finished yet, I had some problems with BigQuery and I haven't been able to solve them yet but the API I built in the back works perfectly connected to the PostgreSQL database but I haven't consumed it in the front yet. Anyways, you can try it if you have Insomnia here is a file you can import and it creates all the endpoint tests
+This project is not finished yet, I had some problems with BigQuery and I haven't been able to solve them yet but the API I built in the back works perfectly connected to the PostgreSQL database but I haven't consumed it in the front yet. Anyways, you can try it running the endpoints in api.http file.
 
 ## Video URL of preview app
 [LINK](https://youtu.be/0SbZjS2Mdc0)
