@@ -19,4 +19,4 @@ and that's all your proyect is already running locally on http://localhost:9000 
 This project is not finished yet, I had some problems with BigQuery and I haven't been able to solve them yet but the API I built in the back works perfectly connected to the PostgreSQL database but I haven't consumed it in the front yet. Anyways, you can try it if you have Insomnia here is a file you can import and it creates all the endpoint tests
 
 ## Video URL of preview app
-[LINK](https://youtube.com)
+[LINK]([https://youtube.com](https://youtu.be/0SbZjS2Mdc0)https://youtu.be/0SbZjS2Mdc0)
