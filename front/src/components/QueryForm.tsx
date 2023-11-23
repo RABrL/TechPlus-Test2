@@ -19,13 +19,8 @@ import {
 } from '@/components/ui/select'
 import { Checkbox } from './ui/checkbox'
 import { Slider } from '@/components/ui/slider'
-import {
-  fetchQuery,
-  TABLE_NAME,
-  type QueryBuilderProps,
-  type selectProps,
-  type whereProps
-} from '@/services/queryBuilder'
+import type { QueryBuilderProps, selectProps, whereProps } from '@/lib/types'
+import { TABLE_NAME } from '@/lib/definitions'
 
 const formSchema = z
   .object({
@@ -95,13 +90,24 @@ export default function QueryForm() {
     if (select?.length != null && select?.length > 0)
       query.select = select as selectProps[]
 
-    const res = await fetchQuery(query)
-    console.log(res)
+    fetch('/api/query.json', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(query)
+    })
+      .then((res) => {
+        if (!res.ok) {
+          console.log(res.statusText)
+        }
+        return res.json()
+      })
+      .then((data) => console.log(data))
   }
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        
         <FormField
           control={form.control}
           name="Year"

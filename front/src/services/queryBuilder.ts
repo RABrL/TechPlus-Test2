@@ -1,77 +1,7 @@
-import { BigQuery } from '@google-cloud/bigquery'
+import { DB_NAME, TABLE_NAME } from "@/lib/definitions"
+import type { QueryBuilderProps, likeProps, whereProps } from "@/lib/types"
 
-const bigquery = new BigQuery({
-  projectId: 'techplus-stage2',
-  keyFilename: '/home/brito/Dev/tech+-test2/front/bigquery-key.json'
-})
-
-const DB_NAME = 'bigquery-public-data.sdoh_cdc_wonder_natality'
-
-export enum TABLE_NAME {
-  abnormal_conditions = 'county_natality_by_abnormal_conditions',
-  default = 'county_natality'
-}
-
-export interface whereProps {
-  Abnormal_Conditions_Checked_YN?: 0 | 1
-  Ave_Age_of_Mother?: number
-  Ave_Birth_Weight_gms?: number
-  County_of_Residence?: string
-  Mothers_Single_Race?: string
-  Year?: string
-}
-
-interface likeProps {
-  County_of_Residence?: string
-  Mothers_Single_Race?: string
-}
-
-export type selectProps = keyof whereProps | '*' | 'Births'
-
-export interface QueryBuilderProps {
-  limit?: number
-  where?: whereProps
-  select?: selectProps[]
-  like?: likeProps
-  tableName?: TABLE_NAME
-  join?: {
-    tableName: TABLE_NAME
-    on: string
-  }
-}
-
-export async function fetchQuery({
-  limit = 10,
-  where,
-  select,
-  like,
-  tableName = TABLE_NAME.default,
-  join
-}: QueryBuilderProps) {
-  const whereQuery = parseWhere(where)
-  const likeQuery = parseLike(like)
-  const selectQuery = select ? select.join(', ') : '*'
-
-  const sqlQuery = `SELECT ${selectQuery}
-    FROM \`${DB_NAME}.${tableName}\`
-    ${join ? `JOIN ${DB_NAME}.${join.tableName} ON ${join.on}` : ''}
-    ${where ? `WHERE ${whereQuery}` : ''}
-    ${like ? `LIKE ${likeQuery}` : ''} 
-    LIMIT ${limit}`
-
-  const options = {
-    query: sqlQuery,
-    // Location must match that of the dataset(s) referenced in the query.
-    location: 'US'
-  }
-
-  // Run the query
-  const [rows] = await bigquery.query(options)
-
-  return rows
-}
-
-const parseWhere = (where?: whereProps) => {
+export const parseWhere = (where?: whereProps) => {
   if (!where) return ''
   return Object.entries(where)
     .map(([key, value]) => {
@@ -80,11 +10,32 @@ const parseWhere = (where?: whereProps) => {
     })
     .join(' AND ')
 }
-const parseLike = (like?: likeProps) => {
+
+export const parseLike = (like?: likeProps) => {
   if (!like) return ''
   Object.entries(like)
     .map(([key, value]) => {
       return `${key} LIKE '%${value}%'`
     })
     .join(' AND ')
+}
+
+export function queryBuilder({
+  select,
+  join,
+  like,
+  limit = 10,
+  tableName = TABLE_NAME.default,
+  where
+}: QueryBuilderProps) {
+  const whereQuery = parseWhere(where)
+  const likeQuery = parseLike(like)
+  const selectQuery = select ? select.join(', ') : '*'
+
+  return `SELECT ${selectQuery}
+    FROM \`${DB_NAME}.${tableName}\`
+    ${join ? `JOIN ${DB_NAME}.${join.tableName} ON ${join.on}` : ''}
+    ${where ? `WHERE ${whereQuery}` : ''}
+    ${like ? `LIKE ${likeQuery}` : ''} 
+    LIMIT ${limit}`
 }
