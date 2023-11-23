@@ -4,7 +4,7 @@ In this repository I have developed an app to build queries to a BigQuery databa
 It is constituted by a Front app developed in Astro the web framework using react components, a Java back which connects to a PostgreSQL database. 
 
 ## How start
-To run this project locally, you need to have docker and docker-compose installed. also you need create a .env file with your variables to look what variables view the *.en.example* file
+To run this project locally, you need to have docker and docker-compose installed. also you need create a .env file with your variables to look what variables view the *.env.example* file
 
 First of all clone the repository
 
