@@ -167,7 +167,7 @@ export default function QueryForm() {
                   value={field.value}
                   min={3000}
                   max={3400}
-                  step={0.01}
+                  step={0.1}
                   onValueChange={field.onChange}
                   minStepsBetweenThumbs={20}
                 />
