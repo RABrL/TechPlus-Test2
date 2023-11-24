@@ -1,8 +1,8 @@
 import type { APIRoute } from 'astro'
-import { queryBuilder } from '@/services/queryBuilder'
-
-import type { QueryBuilderProps } from '@/lib/types'
 import { BigQuery } from '@google-cloud/bigquery'
+
+import { queryBuilder } from '@/lib/query'
+import type { QueryBuilderProps } from '@/lib/types'
 
 export const prerender = false
 
@@ -12,8 +12,8 @@ const bigquery = new BigQuery({
 })
 
 export const POST: APIRoute = async ({ request }) => {
-  const query = queryBuilder(request.body as QueryBuilderProps)
-
+  const query = queryBuilder((await request.json()) as QueryBuilderProps)
+  console.log(query)
   const options = {
     query,
     // Location must match that of the dataset(s) referenced in the query.
@@ -32,5 +32,5 @@ export const POST: APIRoute = async ({ request }) => {
     )
   }
 
-  return new Response(JSON.stringify(rows), { status: 200 })
+  return new Response(JSON.stringify({ rows, query }), { status: 200 })
 }

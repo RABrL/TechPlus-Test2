@@ -1,3 +1,7 @@
+import { useState } from 'react'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+
 import {
   Form,
   FormField,
@@ -6,9 +10,6 @@ import {
   FormControl,
   FormMessage
 } from '@/components/ui/form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
-import { z } from 'zod'
 import Button from '@/components/Button'
 import {
   Select,
@@ -17,47 +18,28 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select'
-import { Checkbox } from './ui/checkbox'
+import { Checkbox } from '@/components/ui/checkbox'
 import { Slider } from '@/components/ui/slider'
-import type { QueryBuilderProps, selectProps, whereProps } from '@/lib/types'
+
 import { TABLE_NAME } from '@/lib/definitions'
-
-const formSchema = z
-  .object({
-    Year: z.string(),
-    County_of_Residence: z.string(),
-    Ave_Age_of_Mother: z.array(z.number().min(15).max(100)),
-    Ave_Birth_Weight_gms: z.array(z.number().min(3000).max(3400)),
-    Mothers_Single_Race: z.string(),
-    Abnormal_Conditions_Checked_YN: z.boolean(),
-    select: z.array(z.string())
-  })
-  .partial()
-  .required({ Ave_Age_of_Mother: true, Ave_Birth_Weight_gms: true })
-
-export const selectOptions = [
-  { value: 'Abnormal_Conditions_Checked_YN', label: 'Abnormal conditions' },
-  { value: 'Ave_Age_of_Mother', label: 'Average age of mother' },
-  { value: 'Ave_Birth_Weight_gms', label: 'Average weight of birth' },
-  { value: 'County_of_Residence', label: 'County of residence' },
-  { value: 'Year', label: 'Year' },
-  { value: 'Births', label: 'Births' },
-  { value: '*', label: 'All fields' }
-]
+import { type TQueryFormSchema, queryFormSchema } from '@/lib/schemas'
+import type { QueryBuilderProps, selectProps, whereProps } from '@/lib/types'
+import { fetchQuery } from '@/services/fetchQuery'
 
 export default function QueryForm() {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<TQueryFormSchema>({
+    resolver: zodResolver(queryFormSchema),
     defaultValues: {
       Abnormal_Conditions_Checked_YN: false,
-      Ave_Age_of_Mother: [15],
-      Ave_Birth_Weight_gms: [3000],
+      Ave_Age_of_Mother: [30, 40],
+      Ave_Birth_Weight_gms: [3010, 3100],
       County_of_Residence: '',
       Mothers_Single_Race: '',
       Year: '',
       select: []
     }
   })
+
   async function onSubmit({
     Ave_Age_of_Mother,
     Ave_Birth_Weight_gms,
@@ -66,7 +48,7 @@ export default function QueryForm() {
     Mothers_Single_Race,
     Year,
     select
-  }: z.infer<typeof formSchema>) {
+  }: TQueryFormSchema) {
     const where: whereProps = {}
     const query: QueryBuilderProps = {}
     if (Year) where.Year = Year
@@ -77,33 +59,16 @@ export default function QueryForm() {
       query.tableName = TABLE_NAME.abnormal_conditions
       where.Abnormal_Conditions_Checked_YN = 1
     }
-
-    if (Ave_Age_of_Mother[0] !== 15)
-      where.Ave_Age_of_Mother = Ave_Age_of_Mother[0]
-
-    if (Ave_Birth_Weight_gms[0] !== 3000)
-      where.Ave_Birth_Weight_gms = Ave_Birth_Weight_gms[0]
-
+    console.log(Ave_Age_of_Mother)
     if (Mothers_Single_Race) where.Mothers_Single_Race = Mothers_Single_Race
+    console.log(Ave_Age_of_Mother)
+    query.where = Object.keys(where).length > 0 ? where : undefined
 
-    query.where = where
     if (select?.length != null && select?.length > 0)
       query.select = select as selectProps[]
 
-    fetch('/api/query.json', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(query)
-    })
-      .then((res) => {
-        if (!res.ok) {
-          console.log(res.statusText)
-        }
-        return res.json()
-      })
-      .then((data) => console.log(data))
+    const data = await fetchQuery(query)
+    console.log(data)
   }
   return (
     <Form {...form}>
@@ -199,10 +164,12 @@ export default function QueryForm() {
               <FormLabel>Average weight of birth (GRAMS)</FormLabel>
               <FormControl>
                 <Slider
-                  defaultValue={[field.value[0]]}
-                  max={3400}
+                  value={field.value}
                   min={3000}
+                  max={3400}
+                  step={0.01}
                   onValueChange={field.onChange}
+                  minStepsBetweenThumbs={20}
                 />
               </FormControl>
               <FormMessage />
@@ -218,7 +185,11 @@ export default function QueryForm() {
               <FormLabel>Average age of mother (YEARS)</FormLabel>
               <FormControl>
                 <Slider
-                  defaultValue={[field.value[0]]}
+                  value={field.value}
+                  aria-label="Average age of mother (YEARS)"
+                  step={0.01}
+                  min={15}
+                  max={80}
                   onValueChange={field.onChange}
                 />
               </FormControl>
@@ -227,7 +198,9 @@ export default function QueryForm() {
             </FormItem>
           )}
         />
-        <Button type="submit">Run Query</Button>
+        <Button type="submit" className="">
+          Run Query
+        </Button>
       </form>
     </Form>
   )

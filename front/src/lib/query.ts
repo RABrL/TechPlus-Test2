@@ -1,10 +1,11 @@
-import { DB_NAME, TABLE_NAME } from "@/lib/definitions"
-import type { QueryBuilderProps, likeProps, whereProps } from "@/lib/types"
+import { DB_NAME, TABLE_NAME } from '@/lib/definitions'
+import type { QueryBuilderProps, likeProps, whereProps } from '@/lib/types'
 
 export const parseWhere = (where?: whereProps) => {
   if (!where) return ''
   return Object.entries(where)
     .map(([key, value]) => {
+      if(Array.isArray(value)) return `${key} BETWEEN ${value[0]} AND ${value[1]}`
       if (typeof value === 'string') return `${key} = '${value}'`
       return `${key} = ${value}`
     })
@@ -31,11 +32,14 @@ export function queryBuilder({
   const whereQuery = parseWhere(where)
   const likeQuery = parseLike(like)
   const selectQuery = select ? select.join(', ') : '*'
+  Object.length
 
-  return `SELECT ${selectQuery}
+  const query = `SELECT ${selectQuery}
     FROM \`${DB_NAME}.${tableName}\`
     ${join ? `JOIN ${DB_NAME}.${join.tableName} ON ${join.on}` : ''}
-    ${where ? `WHERE ${whereQuery}` : ''}
+    ${whereQuery ? `WHERE ${whereQuery}` : ''}
     ${like ? `LIKE ${likeQuery}` : ''} 
     LIMIT ${limit}`
+
+  return query.replace(/\s+/g, ' ')
 }
